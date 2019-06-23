@@ -22,9 +22,22 @@ def root():
 # これをパタトクカシーーを処理するようにしています。
 def pata():
   # とりあえずAとBをつなぐだけで返事を作っていますけど、パタタコカシーーになるように自分で直してください！
-  pata = request.args.get('a', '') + request.args.get('b', '')
-  # pata.htmlのテンプレートの内容を埋め込んで、返事を返す。
-  return render_template('pata.html', pata=pata)
+  
+  tmp = []
+  a = list(request.args.get('a', ''))
+  b = list(request.args.get('b', ''))
+  
+  if len(a) != len(b):
+    pata = "ERROR"
+    return render_template('pata.html', pata=pata)
+  
+  else:
+    for i in range(len(a)):
+      tmp.append(a[i])
+      tmp.append(b[i])
+    pata = ''.join(tmp)
+    # pata.htmlのテンプレートの内容を埋め込んで、返事を返す。
+    return render_template('pata.html', pata=pata)
 
 @app.route('/norikae')
 # /norikae のリクエスト（例えば http://localhost:8080/norikae ）をこの関数で処理する。
