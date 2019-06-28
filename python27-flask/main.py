@@ -39,7 +39,6 @@ def pata():
     # pata.htmlのテンプレートの内容を埋め込んで、返事を返す。
     return render_template('pata.html', pata=pata)
 
-@app.route('/norikae', methods=['GET', 'POST'])
 # /norikae のリクエスト（例えば http://localhost:8080/norikae ）をこの関数で処理する。
 # ここで乗り換え案内をするように編集してください。
 
@@ -53,9 +52,10 @@ def where(station):
             station_is_at.append((train_line, index))
     return station_is_at
 
+@app.route('/norikae', methods=['GET', 'POST'])
 def norikae():
-  start = request.form.get("from")
-  goal = request.form.get("to")
+  start = request.form.get("from", "")
+  goal = request.form.get("to", "")
 
   #print "doing norikae"
   #出発駅
