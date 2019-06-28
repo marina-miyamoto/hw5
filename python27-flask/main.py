@@ -53,10 +53,11 @@ def where(station):
             station_is_at.append((train_line, index))
     return station_is_at
 
-def norikae(self):
+def norikae():
   start = request.form.get("from")
   goal = request.form.get("to")
 
+  #print "doing norikae"
   #出発駅
   Start = where(start)
   #降車駅
